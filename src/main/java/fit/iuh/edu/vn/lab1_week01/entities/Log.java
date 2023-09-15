@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 public class Log {
     private int id;
-    private int account_log;
+    private Account account_log;
     private Timestamp time_log;
     private Timestamp time_logout;
     private String node;
 
-    public Log(int id, int account_log, Timestamp time_log, Timestamp time_logout, String node) {
+    public Log(int id, Account account_log, Timestamp time_log, Timestamp time_logout, String node) {
         this.id = id;
         this.account_log = account_log;
         this.time_log = time_log;
@@ -28,11 +28,11 @@ public class Log {
         this.id = id;
     }
 
-    public int getAccount_log() {
+    public Account getAccount_log() {
         return account_log;
     }
 
-    public void setAccount_log(int account_log) {
+    public void setAccount_log(Account account_log) {
         this.account_log = account_log;
     }
 

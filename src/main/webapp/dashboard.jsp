@@ -1,5 +1,6 @@
 <%@ page import="fit.iuh.edu.vn.lab1_week01.entities.GrantAccess" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="fit.iuh.edu.vn.lab1_week01.entities.Log" %><%--
   Created by IntelliJ IDEA.
   User: phuon
   Date: 9/13/2023
@@ -22,10 +23,27 @@
 <div class="container">
     <div class="row d-flex align-items-center justify-content-center">
         <%
-            GrantAccess gr = (GrantAccess) request.getAttribute("user");
+            GrantAccess gr = (GrantAccess) session.getAttribute("user");
             String updateButtonId = null;
             if (gr.getRole().getRole_Id() == 3) {
         %>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <form class="d-flex ml-auto" role="search" action="control" method="post">
+                    <%
+                        List<Log> dslog = (List<Log>) session.getAttribute("dslogid");
+                        Log log = dslog.get(dslog.size() - 1);
+                    %>
+                    <input type="hidden" name="accountlogId" value="<%=log.getId()%>">
+                    <input type="hidden" name="action" value="logout">
+                    <button class="btn btn-outline-success bi bi-power" type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
         <h1 align="center">Đăng nhập thành công</h1>
         <table class="table">
             <thead class="table-light">
@@ -56,40 +74,49 @@
         <%
         } else if (gr.getRole().getRole_Id() == 1) {
         %>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="dashboard.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="create.jsp">Create Account</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Role
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="role.jsp">Role Manage</a></li>
+                                <li><a class="dropdown-item" href="createrole.jsp">Create Role</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="log.jsp">Log</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <form class="d-flex ml-auto" role="search" action="control" method="post">
+                    <%
+                        List<Log> dslog = (List<Log>) session.getAttribute("dslogid");
+                        Log log = dslog.get(dslog.size() - 1);
+                    %>
+                    <input type="hidden" name="accountlogId" value="<%=log.getId()%>">
+                    <input type="hidden" name="action" value="logout">
+                    <button class="btn btn-outline-success bi bi-power" type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
         <h1 align="center">Đăng nhập thành công</h1>
         <div class="row">
-            <div class="col-6">
-                <label class="form-label">fullName:</label>
-                <input class="form-control" type="text" name="fullname">
-            </div>
-            <div class="col-6">
-                <label class="form-label">Phone:</label>
-                <input class="form-control" type="text" name="phone">
-            </div>
-            <div class="col-6">
-                <label class="form-label">Email:</label>
-                <input class="form-control" type="email" name="email">
-            </div>
-            <div class="col-6">
-                <label class="form-label">Password:</label>
-                <input class="form-control" type="password" name="password">
-            </div>
-            <div class="col-6">
-                <label class="form-label">Status:</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="1" selected>active</option>
-                    <option value="0">deactive</option>
-                    <option value="-1">delete</option>
-                </select>
-            </div>
-            <div class="col-6">
-                <label class="form-label">Role:</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="1" selected>Manager</option>
-                    <option value="2">Staff</option>
-                    <option value="3">Customer</option>
-                </select>
-            </div>
             <div class="col-12 mt-4">
                 <table class="table">
                     <thead class="table-light">
@@ -105,7 +132,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%List<GrantAccess> dsAccount = (List<GrantAccess>) request.getAttribute("dsuser");%>
+                    <%List<GrantAccess> dsAccount = (List<GrantAccess>) session.getAttribute("dsuser");%>
                     <%
                         for (int i = 0; i < dsAccount.size(); i++) {
                             GrantAccess grantAccess = dsAccount.get(i);
@@ -125,19 +152,28 @@
                         </td>
                         <td><%=(grantAccess.getAccount().getStatus() == 1) ? "active" :
                                 (grantAccess.getAccount().getStatus() == 0) ? "deactive" :
-                                        (grantAccess.getAccount().getStatus() == -1) ? "xóa" : "null"
+                                        (grantAccess.getAccount().getStatus() == -1) ? "delete" : "null"
                         %>
                         </td>
-                        <td>
-                            <button class="btn btn-primary bi bi-trash"
-                                    onclick=""
-                                    name="delete">Delete
-                            </button>
-                            <button class="btn btn-warning bi bi-pencil-square"
-                                    onclick="updateClick(<%grantAccess.getAccount().getEmail();%>)"
-                                    name="update">
-                                Update
-                            </button>
+                        <td class="d-flex">
+                            <form action="control" method="post">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="accountid"
+                                       value="<%=grantAccess.getAccount().getAccount_Id()%>">
+                                <button class="btn btn-primary bi bi-trash"
+                                        name="delete">Delete
+                                </button>
+                            </form>
+                            <form action="control" method="post">
+                                <input type="hidden" name="action" value="update">
+                                <input type="hidden" name="accountid"
+                                       value="<%=grantAccess.getAccount().getAccount_Id()%>">
+                                <button class="btn btn-warning bi bi-pencil-square"
+                                        name="update">
+                                    Update
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                     <%
@@ -146,14 +182,107 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-12">
-                <div class="d-flex justify-content-end">
-                    <form action="control">
-                        <input type="hidden" name="action" value="save">
-                        <button class="btn btn-danger">Save</button>
-                    </form>
+
+        </div>
+        <%
+        } else {
+        %>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavs">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="dashboard.jsp">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="create.jsp">Create Account</a>
+                        </li>
+                    </ul>
+
                 </div>
+                <form class="d-flex ml-auto" role="search" action="control" method="post">
+                    <%
+                        List<Log> dslog = (List<Log>) session.getAttribute("dslogid");
+                        Log log = dslog.get(dslog.size() - 1);
+                    %>
+                    <input type="hidden" name="accountlogId" value="<%=log.getId()%>">
+                    <input type="hidden" name="action" value="logout">
+                    <button class="btn btn-outline-success bi bi-power" type="submit">Log out</button>
+                </form>
             </div>
+        </nav>
+        <h1 align="center">Đăng nhập thành công</h1>
+        <div class="row">
+            <div class="col-12 mt-4">
+                <table class="table">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">fullName</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">role</th>
+                        <th scope="col">status</th>
+                        <th scope="col">action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%List<GrantAccess> dsAccount = (List<GrantAccess>) session.getAttribute("dsuserStaff");%>
+                    <%
+                        for (int i = 0; i < dsAccount.size(); i++) {
+                            GrantAccess grantAccess = dsAccount.get(i);
+                            updateButtonId = "btnupdate_" + i;
+                            String deleteButtonId = "btndelete_" + i;
+                    %>
+                    <tr>
+                        <td><%=grantAccess.getAccount().getAccount_Id()%>
+                        </td>
+                        <td><%=grantAccess.getAccount().getFull_name()%>
+                        </td>
+                        <td><%=grantAccess.getAccount().getEmail()%>
+                        </td>
+                        <td><%=grantAccess.getAccount().getPhone()%>
+                        </td>
+                        <td><%=grantAccess.getRole().getRole_name()%>
+                        </td>
+                        <td><%=(grantAccess.getAccount().getStatus() == 1) ? "active" :
+                                (grantAccess.getAccount().getStatus() == 0) ? "deactive" :
+                                        (grantAccess.getAccount().getStatus() == -1) ? "delete" : "null"
+                        %>
+                        </td>
+                        <td class="d-flex">
+                            <form action="control" method="post">
+                                <input type="hidden" name="action" value="deletestaff">
+                                <input type="hidden" name="accountid"
+                                       value="<%=grantAccess.getAccount().getAccount_Id()%>">
+                                <button class="btn btn-primary bi bi-trash"
+                                        name="delete">Delete
+                                </button>
+                            </form>
+                            <form action="control" method="post">
+                                <input type="hidden" name="action" value="update">
+                                <input type="hidden" name="accountid"
+                                       value="<%=grantAccess.getAccount().getAccount_Id()%>">
+                                <button class="btn btn-warning bi bi-pencil-square"
+                                        name="update">
+                                    Update
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
         <%
             }

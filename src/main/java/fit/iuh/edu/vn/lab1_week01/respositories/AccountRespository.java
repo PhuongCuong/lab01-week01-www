@@ -31,4 +31,40 @@ public class AccountRespository {
     public List<GrantAccess> getAllAccountRole() {
         return dataBase.getdsAccountRole();
     }
+
+    public void createAccount(Account ac) {
+        dataBase.CreateAccount(ac);
+    }
+
+    public void creategrantaccount(GrantAccess grantAccess) {
+        dataBase.CreateGrantAccess(grantAccess);
+    }
+
+    public GrantAccess getAccountUpdate(int id) {
+        return dataBase.getAccountUpdate(id);
+    }
+
+    public void updateAccount(Account ac) {
+        dataBase.updateAccount(ac);
+    }
+
+    public void updateGrantaccount(GrantAccess access) {
+        dataBase.updateGrantaccess(access);
+    }
+
+    public void deleteAccount(Account ac) {
+        dataBase.deleteAccount(ac);
+    }
+
+    public void deleteGrantAccount(GrantAccess access) {
+        dataBase.deletegrantAccount(access);
+    }
+
+    public List<GrantAccess> getAllAccountRoleStaff() {
+        return dataBase.getdsAccountRoleStaff();
+    }
+
+    public void updateAccountStaff(Account ac) {
+        dataBase.updateAccountStaff(ac);
+    }
 }
