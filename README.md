@@ -30,6 +30,11 @@ xóa, sửa và cấp quyền). Còn không (không phải admin) thì hiển th
 đăng nhập cùng các quyền mà người đó có.
 </p>
 
+<h3>Sơ đồ quan hệ</h3>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/161b4731-058c-4914-93dc-3ec1a3cbe21c)
+
+
 <h3>Đăng Nhập</h3>
 
 ![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/d848e6f2-ddb0-498f-8991-e30fa0beb0f0)
