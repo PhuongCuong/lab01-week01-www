@@ -29,3 +29,54 @@ thì hiển thị trang dashboard cho phép quản lý các account khác (bao g
 xóa, sửa và cấp quyền). Còn không (không phải admin) thì hiển thị  thông tin của người 
 đăng nhập cùng các quyền mà người đó có.
 </p>
+
+<h3>Đăng Nhập</h3>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/d848e6f2-ddb0-498f-8991-e30fa0beb0f0)
+
+<h3>Quyền Manager</h3>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/5f53e865-88ae-41be-a203-437d4ee5a801)
+
+<h4>Update</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/11efc8b2-9f1b-4136-b689-747e3de3e50c)
+
+<h4>Create</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/4489a0de-e0c8-436d-887a-c767daedd21d)
+
+<h4>Role Manager</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/4715f82e-7e08-490d-ae13-b5f476aa2e1c)
+
+<h4>Create Role</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/1dde7fbc-16fd-48d4-9ff7-65190698c474)
+
+<h4>Log Manager</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/3787447e-a155-47e2-8170-8e68ba2423b0)
+
+<h3>Quyền staff</h3>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/5287db3b-100c-46a9-aaee-55c2a8f749ac)
+
+<h4>Create account</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/74ff72d8-82aa-43d2-8a2a-5d5c2f84cc18)
+
+<h4>Update account</h4>
+
+![image](https://github.com/PhuongCuong/lab01-week01-www/assets/124875164/749398de-3a87-467a-8f62-f6d99f64feab)
+
+
+
+
+
+
+
+
+
+
+
